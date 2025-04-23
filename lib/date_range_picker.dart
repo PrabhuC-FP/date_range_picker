@@ -1153,9 +1153,11 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
         child: _buildPicker(),
       ),
     );
-    final Widget actions = new ButtonBarTheme(
-      data: ButtonBarThemeData(),
-      child: new ButtonBar(
+    final Widget actions = Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: new OverflowBar(
+        alignment: MainAxisAlignment.end,
+        overflowAlignment: OverflowBarAlignment.center,
         children: <Widget>[
           new TextButton(
             child: new Text(localizations.cancelButtonLabel),
@@ -1231,7 +1233,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
 
     return new Theme(
       data: theme.copyWith(
-        dialogBackgroundColor: Colors.transparent,
+        dialogTheme: DialogThemeData(backgroundColor: Colors.transparent),
       ),
       child: dialog,
     );
@@ -1277,6 +1279,7 @@ Future<List<DateTime?>?> showDatePicker({
   required DateTime initialLastDate,
   required DateTime firstDate,
   required DateTime lastDate,
+  bool barrierDismissible = false,
   SelectableDayPredicate? selectableDayPredicate,
   DatePickerMode initialDatePickerMode = DatePickerMode.day,
   Locale? locale,
@@ -1322,8 +1325,9 @@ Future<List<DateTime?>?> showDatePicker({
     );
   }
 
-  return await showDialog<List<DateTime>>(
+  return await showDialog<List<DateTime?>?>(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) => child,
   );
 }
