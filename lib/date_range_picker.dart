@@ -1108,7 +1108,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
   }
 
   void _handleOk() {
-    List<DateTime?> result = [];
+    List<DateTime?>? result = [];
     if (_selectedFirstDate != null) {
       result.add(_selectedFirstDate);
       if (_selectedLastDate != null) {
@@ -1271,7 +1271,7 @@ typedef bool SelectableDayPredicate(DateTime day);
 ///
 ///  * [showTimePicker]
 ///  * <https://material.google.com/components/pickers.html#pickers-date-pickers>
-Future<List<DateTime>?> showDatePicker({
+Future<List<DateTime?>?> showDatePicker({
   required BuildContext context,
   required DateTime initialFirstDate,
   required DateTime initialLastDate,
